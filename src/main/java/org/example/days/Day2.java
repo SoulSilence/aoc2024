@@ -3,8 +3,6 @@ package org.example.days;
 import org.example.utils.FileUtils;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -12,10 +10,10 @@ import java.util.stream.Stream;
 
 public class Day2 {
     public static void main(String[] args) {
-        day2();
+        part2();
     }
 
-    private static void day2() {
+    private static void part2() {
         List<String> input = FileUtils.readFile("input/day2.txt");
         int ans = 0;
         for (String s : input) {
@@ -68,7 +66,7 @@ public class Day2 {
         return arr;
     }
 
-    private static void day1() {
+    private static void part1() {
         List<String> input = FileUtils.readFile("input/day2.txt");
         int ans = 0;
         for (String s : input) {
