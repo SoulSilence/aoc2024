@@ -12,46 +12,45 @@ public class Day3 {
     public static final String DO = "do()";
     public static final String DON_T = "don't()";
 
+    private static final Pattern pattern = Pattern.compile("mul\\(\\d{1,3},\\d{1,3}\\)|do\\(\\)|don't\\(\\)");
+    private static final Pattern numerPattern = Pattern.compile("\\d{1,3}");
+
     public static void main(String[] args) {
         part2();
     }
 
     private static void part2() {
         String input = FileUtils.readFile("input/day3.txt").getFirst();
-        boolean doMul = true;
+
         long ans = 0;
+        boolean doMul = true;
 
-        Pattern pattern = Pattern.compile("^mul\\(\\d{1,3},\\d{1,3}\\)");
-        Pattern numerPattern = Pattern.compile("\\d{1,3}");
-
-        for (int i = 0; i < input.length(); i++) {
-            if (DO.equals(input.substring(i, Math.min(i + DO.length(), input.length())))) {
+        Matcher matcher = pattern.matcher(input);
+        while (matcher.find()) {
+            String group = matcher.group();
+            if (DO.equals(group)) {
                 doMul = true;
-                continue;
-            }
-            if (DON_T.equals(input.substring(i, Math.min(i + DON_T.length(), input.length())))) {
+            } else if (DON_T.equals(group)) {
                 doMul = false;
-                System.out.println("do false");
-                continue;
-            }
-
-            if (!doMul) {
-                continue;
-            }
-
-            Matcher matcher = pattern.matcher(input.substring(i));
-            if (matcher.find()) {
-                String mulExp = matcher.group();
-                Matcher matcher1 = numerPattern.matcher(mulExp);
-                List<Long> numbers = new ArrayList<>();
-                while (matcher1.find()) {
-                    numbers.add(Long.parseLong(matcher1.group()));
+            } else {
+                if (!doMul) {
+                    continue;
                 }
-                ans += numbers.get(0) * numbers.get(1);
-                i += mulExp.length() - 1;
+
+                ans += getMulValue(numerPattern, group);
             }
         }
+
         System.out.println("ans = " + ans);
+    }
+
+    private static long getMulValue(Pattern numerPattern, String group) {
+        Matcher matcher1 = numerPattern.matcher(group);
+        List<Long> numbers = new ArrayList<>();
+        while (matcher1.find()) {
+            numbers.add(Long.parseLong(matcher1.group()));
+        }
+        return numbers.get(0) * numbers.get(1);
     }
 
     private static void part1() {
@@ -64,12 +63,7 @@ public class Day3 {
 
             while (matcher.find()) {
                 String mulExp = matcher.group();
-                Matcher matcher1 = numerPattern.matcher(mulExp);
-                List<Long> numbers = new ArrayList<>();
-                while (matcher1.find()) {
-                    numbers.add(Long.parseLong(matcher1.group()));
-                }
-                ans += numbers.get(0) * numbers.get(1);
+                ans += getMulValue(numerPattern, mulExp);
             }
         }
         System.out.println("ans = " + ans);
