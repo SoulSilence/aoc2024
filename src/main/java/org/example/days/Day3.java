@@ -8,12 +8,9 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Day3 {
-
     public static final String DO = "do()";
     public static final String DON_T = "don't()";
-
-    private static final Pattern pattern = Pattern.compile("mul\\(\\d{1,3},\\d{1,3}\\)|do\\(\\)|don't\\(\\)");
-    private static final Pattern numerPattern = Pattern.compile("\\d{1,3}");
+    private static final Pattern pattern = Pattern.compile("mul\\((\\d{1,3}),(\\d{1,3})\\)|do\\(\\)|don't\\(\\)");
 
     public static void main(String[] args) {
         part2();
@@ -37,33 +34,23 @@ public class Day3 {
                     continue;
                 }
 
-                ans += getMulValue(numerPattern, group);
+                ans += Long.parseLong(matcher.group(1)) * Long.parseLong(matcher.group(2));
             }
         }
 
         System.out.println("ans = " + ans);
     }
 
-    private static long getMulValue(Pattern numerPattern, String group) {
-        Matcher matcher1 = numerPattern.matcher(group);
-        List<Long> numbers = new ArrayList<>();
-        while (matcher1.find()) {
-            numbers.add(Long.parseLong(matcher1.group()));
-        }
-        return numbers.get(0) * numbers.get(1);
-    }
 
     private static void part1() {
         List<String> input = FileUtils.readFile("input/day3.txt");
         long ans = 0;
         for (String s : input) {
-            Pattern pattern = Pattern.compile("mul\\(\\d{1,3},\\d{1,3}\\)");
-            Pattern numerPattern = Pattern.compile("\\d{1,3}");
+            Pattern pattern = Pattern.compile("mul\\((\\d{1,3}),(\\d{1,3})\\)");
             Matcher matcher = pattern.matcher(s);
 
             while (matcher.find()) {
-                String mulExp = matcher.group();
-                ans += getMulValue(numerPattern, mulExp);
+                ans += Long.parseLong(matcher.group(1)) * Long.parseLong(matcher.group(2));
             }
         }
         System.out.println("ans = " + ans);
