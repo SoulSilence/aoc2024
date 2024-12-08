@@ -18,4 +18,10 @@ public class FileUtils {
             throw new RuntimeException(e);
         }
     }
+
+    public static char[][] readFileCharMatrix(String fileName) {
+        return readFile(fileName).stream()
+                .map(String::toCharArray)
+                .toArray(char[][]::new);
+    }
 }
