@@ -1,6 +1,6 @@
 package org.example.days;
 
-import org.example.utils.FileUtils;
+import org.example.utils.Utils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Day7 {
     }
 
     private static void solve(boolean allowConcat) {
-        List<String> input = FileUtils.readFile("input/day7.txt");
+        List<String> input = Utils.readFile("input/day7.txt");
         long total = input.stream()
                 .mapToLong(line -> processLine(line, allowConcat))
                 .sum();

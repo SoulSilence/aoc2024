@@ -1,6 +1,6 @@
 package org.example.days;
 
-import org.example.utils.FileUtils;
+import org.example.utils.Utils;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -12,7 +12,7 @@ public class Day3 {
     }
 
     private static void part2() {
-        String input = FileUtils.readFile("input/day3.txt").getFirst();
+        String input = Utils.readFile("input/day3.txt").getFirst();
         long ans = 0;
         boolean doMul = true;
         Matcher matcher = Pattern
@@ -35,7 +35,7 @@ public class Day3 {
     }
 
     private static void part1() {
-        String s = FileUtils.readFile("input/day3.txt").getFirst();
+        String s = Utils.readFile("input/day3.txt").getFirst();
         long ans = 0;
         Matcher matcher = Pattern.compile("mul\\((\\d{1,3}),(\\d{1,3})\\)").matcher(s);
         while (matcher.find()) {

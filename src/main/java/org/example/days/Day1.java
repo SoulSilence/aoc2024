@@ -1,8 +1,7 @@
 package org.example.days;
 
-import org.example.utils.FileUtils;
+import org.example.utils.Utils;
 
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -16,7 +15,7 @@ public class Day1 {
     }
 
     private static void part2() {
-        List<String> input = FileUtils.readFile("input/day1.txt");
+        List<String> input = Utils.readFile("input/day1.txt");
         List<Integer> arr1 = new ArrayList<>();
         Map<Integer, Integer> map2 = new HashMap<>();
         for (String s : input) {
@@ -42,7 +41,7 @@ public class Day1 {
     }
 
     private static void part1() {
-        List<String> input = FileUtils.readFile("input/day1.txt");
+        List<String> input = Utils.readFile("input/day1.txt");
         List<Integer> arr1 = new ArrayList<>();
         List<Integer> arr2 = new ArrayList<>();
         for (String s : input) {

@@ -1,6 +1,6 @@
 package org.example.days;
 
-import org.example.utils.FileUtils;
+import org.example.utils.Utils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,7 +24,7 @@ public class Day4 {
     private static int ans2 = 0;
 
     private static void part1() {
-        List<List<String>> input = FileUtils.readFile("input/day4.txt").stream().map(
+        List<List<String>> input = Utils.readFile("input/day4.txt").stream().map(
                 s -> Arrays.stream(s.split("")).toList()
         ).toList();
 
@@ -41,7 +41,7 @@ public class Day4 {
 
     // 2025 too high
     private static void part2() {
-        List<List<String>> input = FileUtils.readFile("input/day4.txt").stream().map(
+        List<List<String>> input = Utils.readFile("input/day4.txt").stream().map(
                 s -> Arrays.stream(s.split("")).toList()
         ).toList();
 

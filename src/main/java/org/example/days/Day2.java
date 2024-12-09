@@ -1,6 +1,6 @@
 package org.example.days;
 
-import org.example.utils.FileUtils;
+import org.example.utils.Utils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ public class Day2 {
     }
 
     private static void part2() {
-        List<String> input = FileUtils.readFile("input/day2.txt");
+        List<String> input = Utils.readFile("input/day2.txt");
         int ans = 0;
         for (String s : input) {
             if (s.isBlank()) continue;
@@ -67,7 +67,7 @@ public class Day2 {
     }
 
     private static void part1() {
-        List<String> input = FileUtils.readFile("input/day2.txt");
+        List<String> input = Utils.readFile("input/day2.txt");
         int ans = 0;
         for (String s : input) {
             if (s.isBlank()) continue;

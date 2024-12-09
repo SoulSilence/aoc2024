@@ -1,6 +1,6 @@
 package org.example.days;
 
-import org.example.utils.FileUtils;
+import org.example.utils.Utils;
 
 import java.util.*;
 
@@ -10,7 +10,7 @@ public class Day5 {
     }
 
     private static void part2() throws InterruptedException {
-        List<String> input = FileUtils.readFile("input/day5.txt");
+        List<String> input = Utils.readFile("input/day5.txt");
 
         // key is the smallest value, and set contains numbers that must be after that
         HashMap<String, Set<String>> orderingMap = new HashMap<>();
@@ -77,7 +77,7 @@ public class Day5 {
     }
 
     private static void part1() {
-        List<String> input = FileUtils.readFile("input/day5.txt");
+        List<String> input = Utils.readFile("input/day5.txt");
 
         // key is the smallest value, and set contains numbers that must be after that
         HashMap<String, Set<String>> orderingMap = new HashMap<>();

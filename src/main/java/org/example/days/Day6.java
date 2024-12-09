@@ -1,6 +1,6 @@
 package org.example.days;
 
-import org.example.utils.FileUtils;
+import org.example.utils.Utils;
 
 import java.util.*;
 
@@ -17,13 +17,13 @@ public class Day6 {
     );
 
     private static void part2() throws Exception {
-        char[][] matrix = FileUtils.readFileCharMatrix("input/day6.txt");
+        char[][] matrix = Utils.readFileCharMatrix("input/day6.txt");
 
         long ans = 0;
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
                 if (matrix[i][j] == '.') {
-                    char[][] modifiedMatrix = FileUtils.readFileCharMatrix("input/day6.txt");
+                    char[][] modifiedMatrix = Utils.readFileCharMatrix("input/day6.txt");
                     modifiedMatrix[i][j] = '#';
                     try {
                         part1(modifiedMatrix, false);
@@ -85,13 +85,6 @@ public class Day6 {
         if (outputAnswer) {
             System.out.println("ans.size() = " + ans.size());
         }
-    }
-
-    private static void outputMatrix(char[][] matrix) {
-        for (char[] chars : matrix) {
-            System.out.println(Arrays.toString(chars));
-        }
-        System.out.println();
     }
 
     private static boolean areIandJSafe(int guardI, int guardJ, char[][] matrix) {
