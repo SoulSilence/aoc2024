@@ -35,4 +35,14 @@ public class Utils {
         }
         System.out.println();
     }
+
+    public static void outputMatrix(int[][] matrix) {
+        for (int[] chars : matrix) {
+            for (int aChar : chars) {
+                System.out.print(aChar);
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 }
