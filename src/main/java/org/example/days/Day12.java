@@ -23,23 +23,27 @@ public class Day12 {
             {0.5, -0.5}, {0.5, 0.5}, {-0.5, 0.5}, {-0.5, 0.5}
     };
 
+
+    private void part1() {
+        matrix = Utils.readFileCharMatrix("input/day12.txt");
+        markMatrix();
+
+        calculateAreaAndPerimeter();
+
+        Utils.outputMatrix(markedMatrix);
+
+        // Compute the final answer
+        int answer = area.keySet().stream()
+                .mapToInt(region -> area.get(region) * perimeter.get(region))
+                .sum();
+
+        System.out.println("Answer = " + answer);
+    }
+
     // 823953 too low
     private void part2() {
         matrix = Utils.readFileCharMatrix("input/day12_test.txt");
-        markedMatrix = new int[matrix.length][matrix[0].length];
-
-        for (int i = 0; i < matrix.length; i++) {
-            for (int j = 0; j < matrix[0].length; j++) {
-                if (markedMatrix[i][j] == 0) {
-                    markRegion(i, j, regionCounter++);
-                }
-            }
-        }
-
-        for (int i = 1; i < regionCounter; i++) {
-            area.put(i, 0);
-            sides.put(i, 0);
-        }
+        markMatrix();
 
         calculateAreaAndSides();
 
@@ -65,20 +69,15 @@ public class Day12 {
                 for (int[] direction : DIRECTIONS) {
                     int ni = i + direction[0];
                     int nj = j + direction[1];
-
-
-
                 }
             }
         }
     }
 
 
-    private void part1() {
-        matrix = Utils.readFileCharMatrix("input/day12.txt");
+    private void markMatrix() {
         markedMatrix = new int[matrix.length][matrix[0].length];
 
-        // Mark all regions
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
                 if (markedMatrix[i][j] == 0) {
@@ -87,23 +86,13 @@ public class Day12 {
             }
         }
 
-        // Initialize area and perimeter maps
         for (int i = 1; i < regionCounter; i++) {
             area.put(i, 0);
+            sides.put(i, 0);
             perimeter.put(i, 0);
         }
-
-        calculateAreaAndPerimeter();
-
-        Utils.outputMatrix(markedMatrix);
-
-        // Compute the final answer
-        int answer = area.keySet().stream()
-                .mapToInt(region -> area.get(region) * perimeter.get(region))
-                .sum();
-
-        System.out.println("Answer = " + answer);
     }
+
 
     private void markRegion(int i, int j, int regionId) {
         if (!isValidCell(i, j) || markedMatrix[i][j] != 0) {
